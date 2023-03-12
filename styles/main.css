@@ -1,0 +1,200 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap');
+
+html[data-theme='day'] {
+    --gradient: linear-gradient(107.75deg, rgba(120, 215, 221, 0.86) 0%, #1C5998 100%);
+    --textAccent: #31364C;
+    --textSecondary: #FCFCFC;
+    --boxShadow: -8px -8px 16px rgba(243, 237, 223, 0.3), 8px 8px 18px rgba(49, 54, 76, 0.3);
+    --bg: #fff;
+    --accent: #78D7DD;
+}
+
+html[data-theme='night'] {
+    --gradient: linear-gradient(107.75deg, rgba(14, 21, 51, 0.96) 0%, #1C5998 100%);
+    --textAccent: #FCFCFC;
+    --textSecondary: #FCFCFC;
+    --boxShadow: -4px -4px 12px rgba(14, 21, 51, 0.4), 2px 2px 2px rgba(255, 255, 255, 0.12);
+    --bg: #31364C;
+    --accent: #31364C;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 16px;
+}
+
+button {
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+#app {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.weather__app {
+    height: 100%;
+    background-color: var(--bg);
+}
+
+.weather__app-container {
+    max-width: 1140px;
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.weather__theme-btn {
+    position: absolute;
+    right: 0;
+    top: 0;
+    box-shadow: var(--boxShadow);
+    background: var(--bg);
+    border-radius: 50%;
+    padding: 8px;
+    display: flex;
+}
+
+.weather__app_search {
+    display: flex;
+    width: 600px;
+}
+
+.weather__app_search label {
+    width: 100%;
+}
+
+.weather__app_search .search__input {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    box-shadow: var(--boxShadow);
+    border: none;
+    padding: 6px 12px;
+    outline: none;
+    font-size: 20px;
+    width: 100%;
+    background-color: var(--bg);
+    color: var(--textAccent);
+}
+
+.weather__app_search .button {
+    display: flex;
+    align-items: center;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border: none;
+    padding: 0 8px;
+    box-shadow: var(--boxShadow);
+    background-color: var(--bg);
+}
+
+.weather__app-content {
+    max-width: 600px;
+    width: 100%;
+    background: var(--gradient);
+    box-shadow: var(--boxShadow);
+    border-radius: 8px;
+    padding: 16px 64px;
+    margin: 32px 0;
+}
+
+.weather__app-content .main__header {
+    color: var(--textSecondary);
+}
+
+.weather__app-content .main__header .city {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.weather__app-content .main__header .day {
+    display: flex;
+    align-items: center;
+    font-style: italic;
+}
+.weather__app-content .main__header .day .time {
+    margin-right: 12px;
+    position: relative;
+}
+
+.weather__app-content .main__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 8px 0 48px 0;
+}
+
+.weather__app-content .main__body .temp {
+    font-size: 96px;
+    font-weight: bold;
+    color: var(--textAccent);
+}
+.weather__app-content .main__body .temp sup {
+    font-size: 64px;
+}
+
+
+.weather__app-content .main__footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.weather__app-content .main__footer .footer__info {
+    display: flex;
+    align-items: center;
+    color: var(--textSecondary);
+    font-size: 20px;
+}
+
+.weather__app-content .main__footer .footer__info .info__image {
+    margin-right: 24px;
+}
+
+.weather__week {
+    display: flex;
+    gap: 16px;
+}
+
+.weather__week-item {
+    background-color: var(--accent);
+    box-shadow: var(--boxShadow);
+    border-radius: 8px;
+    padding: 12px 24px;
+    text-align: center;
+    color: var(--textAccent);
+}
+
+.weather__week-item .title {
+    font-size: 20px;
+}
+
+.weather__week-item .temp {
+    margin: 8px 0;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.weather__week-item .temp sup {
+    font-size: 20px;
+}
+
+.weather__week-item .image {
+    width: 64px;
+}
+.weather__week-item .image img {
+    width: 100%;
+}
