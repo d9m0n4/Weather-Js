@@ -4,7 +4,7 @@ html[data-theme='day'] {
     --gradient: linear-gradient(107.75deg, rgba(120, 215, 221, 0.86) 0%, #1C5998 100%);
     --textAccent: #31364C;
     --textSecondary: #FCFCFC;
-    --boxShadow: -8px -8px 16px rgba(243, 237, 223, 0.3), 8px 8px 18px rgba(49, 54, 76, 0.3);
+    --boxShadow: -6px -6px 16px rgba(243, 237, 223, 0.2), 6px 6px 18px rgba(49, 54, 76, 0.2);
     --bg: #fff;
     --accent: #78D7DD;
 }
@@ -13,7 +13,7 @@ html[data-theme='night'] {
     --gradient: linear-gradient(107.75deg, rgba(14, 21, 51, 0.96) 0%, #1C5998 100%);
     --textAccent: #FCFCFC;
     --textSecondary: #FCFCFC;
-    --boxShadow: -4px -4px 12px rgba(14, 21, 51, 0.4), 2px 2px 2px rgba(255, 255, 255, 0.12);
+    --boxShadow: -4px -4px 10px rgba(0, 0, 0, 0.4), 1px 1px 10px rgba(243, 237, 223, 0.10);
     --bg: #31364C;
     --accent: #31364C;
 }
@@ -44,6 +44,7 @@ button {
 .weather__app {
     height: 100%;
     background-color: var(--bg);
+    transition: background-color 200ms ease-in-out;
 }
 
 .weather__app-container {
@@ -61,12 +62,37 @@ button {
 .weather__theme-btn {
     position: absolute;
     right: 0;
-    top: 0;
+    top: 64px;
     box-shadow: var(--boxShadow);
     background: var(--bg);
     border-radius: 50%;
     padding: 8px;
     display: flex;
+    width: 48px;
+    height: 48px;
+}
+
+.weather__theme-btn .night {
+    position: absolute;
+    opacity: 0;
+    display: none;
+}
+.weather__theme-btn .day {
+    position: absolute;
+    opacity: 1;
+    display: block;
+}
+
+.weather__theme-btn.active .night {
+    position: absolute;
+    opacity: 1;
+    display: block;
+}
+
+.weather__theme-btn.active .day {
+    position: absolute;
+    opacity: 0;
+    display: none;
 }
 
 .weather__app_search {
@@ -89,6 +115,7 @@ button {
     width: 100%;
     background-color: var(--bg);
     color: var(--textAccent);
+    transition: background-color 150ms ease-in-out;
 }
 
 .weather__app_search .button {
@@ -100,6 +127,12 @@ button {
     padding: 0 8px;
     box-shadow: var(--boxShadow);
     background-color: var(--bg);
+    transition: background-color 150ms ease-in-out;
+}
+
+.weather__app_search .button svg path {
+    fill: var(--textAccent);
+    transition: fill 150ms ease-in-out;
 }
 
 .weather__app-content {
@@ -110,6 +143,7 @@ button {
     border-radius: 8px;
     padding: 16px 64px;
     margin: 32px 0;
+    transition: all 250ms ease-in-out;
 }
 
 .weather__app-content .main__header {
@@ -176,6 +210,7 @@ button {
     padding: 12px 24px;
     text-align: center;
     color: var(--textAccent);
+    transition: background-color 250ms ease-in-out;
 }
 
 .weather__week-item .title {
