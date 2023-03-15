@@ -12,7 +12,7 @@
             <div class="weather__app-container">
                 <div class="weather__app_search">
                     <label>
-                        <input type="text" class="search__input">
+                        <input required type="text" class="search__input">
                     </label>
                     <button class="button">
                         <svg width="26" height="26" viewBox="0 0 26 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,97 +24,54 @@
                     <img src="assets/images/moon.svg"  class="day" alt="moon">
                     <img src="assets/images/sun.svg"  class="night" alt="sun">
                 </button>
-                <div class="weather__app-content">
-                    <div class="weather__app-main">
-                        <div class="main__header">
-                            <div class="city">Яранск</div>
-                            <div class="day"><span class="time">13:58</span> <span class="date">12/03</span></div>
-                        </div>
-                        <div class="main__body">
-                            <div class="temp">12 <sup>°C</sup></div>
-                            <div class="weather__image">
-                                <img src="assets/images/sunny_weath.svg" alt="weather">
+                <div class="weather__main-content hidden">
+                    <div class="weather__app-content ">
+                        <div class="weather__app-main">
+                            <div class="main__header">
+                                <div class="city">Яранск</div>
+                                <div class="day"><span class="time">13:58</span> <span class="date">12/03</span></div>
                             </div>
-                        </div>
-                        <div class="main__footer">
-                            <div class="footer__info">
-                                <div class="info__image">
-                                    <img src="assets/images/wind.svg" alt="wind">
-                                </div>
-                                <div class="info__text">
-                                    9 м\с
+                            <div class="main__body">
+                                <div class="temp"></div>
+                                <div class="weather__image">
+                                    <img class="weather__icon" src="assets/images/sunny_weath.svg" alt="weather">
                                 </div>
                             </div>
-                            <div class="footer__info">
-                                <div class="info__image">
-                                    <img src="assets/images/therm.svg" alt="wind">
+                            <div class="main__footer">
+                                <div class="footer__info">
+                                    <div class="info__image">
+                                        <img src="assets/images/wind.svg" alt="wind">
+                                    </div>
+                                    <div class="info__text wind">
+                                        9 м\с
+                                    </div>
                                 </div>
-                                <div class="info__text">
-                                    747 мм рт.ст.
+                                <div class="footer__info">
+                                    <div class="info__image">
+                                        <img src="assets/images/therm.svg" alt="wind">
+                                    </div>
+                                    <div class="info__text pressure">
+                                        747 мм рт.ст.
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="footer__info">
-                                <div class="info__image">
-                                    <img src="assets/images/rain.svg" alt="wind">
-                                </div>
-                                <div class="info__text">
-                                    82%
+                                <div class="footer__info">
+                                    <div class="info__image">
+                                        <img src="assets/images/rain.svg" alt="wind">
+                                    </div>
+                                    <div class="info__text humidity">
+                                        82%
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <div class="weather__week">
+                       
+                    </div>
+                   
                 </div>
-                <div class="weather__week">
-                    <div class="weather__week-item">
-                        <div class="title">ПН</div>
-                        <div class="temp">0 <sup>°C</sup></div>
-                        <div class="image">
-                            <img src="assets/images/sunny_weath.svg" alt="weather">
-                        </div>
-                    </div>
-                    <div class="weather__week-item">
-                        <div class="title">ПН</div>
-                        <div class="temp">0 <sup>°C</sup></div>
-                        <div class="image">
-                            <img src="assets/images/sunny_weath.svg" alt="weather">
-                        </div>
-                    </div>
-                    <div class="weather__week-item">
-                        <div class="title">ПН</div>
-                        <div class="temp">0 <sup>°C</sup></div>
-                        <div class="image">
-                            <img src="assets/images/sunny_weath.svg" alt="weather">
-                        </div>
-                    </div>
-                    <div class="weather__week-item">
-                        <div class="title">ПН</div>
-                        <div class="temp">0 <sup>°C</sup></div>
-                        <div class="image">
-                            <img src="assets/images/sunny_weath.svg" alt="weather">
-                        </div>
-                    </div>
-                    <div class="weather__week-item">
-                        <div class="title">ПН</div>
-                        <div class="temp">0 <sup>°C</sup></div>
-                        <div class="image">
-                            <img src="assets/images/sunny_weath.svg" alt="weather">
-                        </div>
-                    </div>
-                    <div class="weather__week-item">
-                        <div class="title">ПН</div>
-                        <div class="temp">0 <sup>°C</sup></div>
-                        <div class="image">
-                            <img src="assets/images/sunny_weath.svg" alt="weather">
-                        </div>
-                    </div>
-                    <div class="weather__week-item">
-                        <div class="title">ПН</div>
-                        <div class="temp">0 <sup>°C</sup></div>
-                        <div class="image">
-                            <img src="assets/images/sunny_weath.svg" alt="weather">
-                        </div>
-                    </div>
-                </div>
+                <div class="weather__app-error"></div>
+                <div class="loader "></div>
             </div>
 
         </div>

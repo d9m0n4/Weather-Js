@@ -105,8 +105,7 @@ button {
 }
 
 .weather__app_search .search__input {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
+   border-radius: 8px;
     box-shadow: var(--boxShadow);
     border: none;
     padding: 6px 12px;
@@ -121,10 +120,10 @@ button {
 .weather__app_search .button {
     display: flex;
     align-items: center;
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-radius: 8px;
     border: none;
     padding: 0 8px;
+    margin-left: 16px;
     box-shadow: var(--boxShadow);
     background-color: var(--bg);
     transition: background-color 150ms ease-in-out;
@@ -133,6 +132,23 @@ button {
 .weather__app_search .button svg path {
     fill: var(--textAccent);
     transition: fill 150ms ease-in-out;
+}
+
+.weather__main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.weather__main-content.hidden {
+    display: none;
+}
+
+.weather__app-error {
+    padding: 16px;
+    margin-top: 8px;
+    color: var(--textAccent);
 }
 
 .weather__app-content {
@@ -232,4 +248,17 @@ button {
 }
 .weather__week-item .image img {
     width: 100%;
+}
+
+.loader {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0; 
+    right: 0;
+    background: var(--bg);
+}
+.loader.active {
+    display: block;
 }
