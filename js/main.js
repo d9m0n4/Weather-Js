@@ -9,14 +9,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const appMain = weatherApp.querySelector('.weather__app-content')
     const appHeading = appMain.querySelector('.city')
     const temp = appMain.querySelector('.temp')
+    const weatherImage = appMain.querySelector('.weather__icon')
     const wind = appMain.querySelector('.wind')
     const pressure = appMain.querySelector('.pressure')
     const humidity = appMain.querySelector('.humidity')
 
     const searchBtn = searchArea.querySelector('.button')
     const searchInput = searchArea.querySelector('.search__input')
-
-   
 
     const setTheme = () => {
         const isDarkTheme = window?.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -28,11 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (currentTheme === 'night') {
             weatherBtn.classList.add('active')
         }
-        
     }
     setTheme()
-
-    // TODO сохранять подогу в localStorage
 
     const positionError = (error) => {
         if(error.code === 1) {
@@ -41,14 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     const getPosition = (position) => {
-        fetchWeather(`${position.coords.latitude},${position.coords.longitude}`)
+        fetchWeather(localStorage.getItem('lastQuery')
+            ? localStorage.getItem('lastQuery')
+            : `${position.coords.latitude},${position.coords.longitude}`
+        )
     }
 
     const fetchWeather = async(city) => {
-
         const API_KEY = '62f46d9dc85f435fa9653606231503'
-        const query = city
-        const BASE_URL = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${query}&lang=ru&days=7`
+        const BASE_URL = `http://api.weatherapi.com/v1/forecast.json?key=${API_KEY}&q=${city}&lang=ru&days=7`
         try{
             loader()
             const response = await fetch(BASE_URL, {
@@ -72,15 +69,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-    
+    const changeTheme = (name) => {
+        document.documentElement.setAttribute('data-theme', name)
+        window.localStorage.setItem('theme', name)
+    }
+
     const toggleHandler = () => {
         weatherBtn.classList.toggle('active')
         if (weatherBtn.classList.contains('active')) {
-            document.documentElement.setAttribute('data-theme', 'night')
-            window.localStorage.setItem('theme', 'night')
+            changeTheme('night')
         } else {
-            document.documentElement.setAttribute('data-theme', 'day')
-            window.localStorage.setItem('theme', 'day')
+           changeTheme('day')
         }
     }
     
@@ -110,14 +109,12 @@ document.addEventListener('DOMContentLoaded', () => {
         weatherAppError.textContent = message
     }
 
-    const d = (timestamp) => {
-        
-        console.log(timestamp);
-        const a = new Intl.DateTimeFormat('ru-RU', {dateStyle: "short", timeStyle: 'short'}).format(new Date(timestamp))
-        appMain.querySelector('.day').textContent = a
-        
-    }   
-    
+    const currentDate = (timestamp) => {
+        appMain.querySelector('.day').textContent = new Intl.DateTimeFormat('ru-RU', {
+            dateStyle: "short",
+            timeStyle: 'short'
+        }).format(new Date(timestamp))
+    }
 
     const renderData = (data) => {
         renderError('')
@@ -126,20 +123,18 @@ document.addEventListener('DOMContentLoaded', () => {
         contentWrapper.classList.remove('hidden')
         appHeading.textContent = data.location.name
         temp.insertAdjacentHTML('afterbegin', `${Math.round(data.current.temp_c)} <sup>°C</sup>`)
+        weatherImage.setAttribute('src', data.current.condition.icon)
         wind.textContent = `${data.current.wind_mph} м.с.`
         pressure.textContent = `${data.current.pressure_mb} мм рт.ст.`
         humidity.textContent = `${data.current.humidity} %.`
        
-        d(data.location.localtime_epoch * 1000)
+        currentDate(data.location.localtime_epoch * 1000)
     }
-
 
     const formatToWeekDay = (date) => {
         
         return new Intl.DateTimeFormat('ru-RU', {weekday: 'short'}).format(new Date(`'${date}'`))
     }
-
-    
 
     const loader = (loading = true) => {
         if (loading) {
@@ -153,7 +148,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (searchInput.value && localStorage.getItem('query') !== searchInput.value) {
             fetchWeather(searchInput.value)
         }
-        
     })
 
     searchInput.addEventListener('keyup', (e) => { 
@@ -163,9 +157,6 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     
     navigator.geolocation.getCurrentPosition(getPosition, positionError)
-
-   
-    
 })
 
 
